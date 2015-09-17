@@ -16,9 +16,10 @@
 
         <!-- Scripts -->
         <?php echo $this->headScript()
+		->prependFile($this->basePath('include/js/page/ctrl.js'))
             ->prependFile($this->basePath('include/js/bootstrap/bootstrap.min.js'))
             ->prependFile($this->basePath('include/js/jquery/jquery-1.11.3.min.js'))
-            ->prependFile($this->basePath('include/js/page/ctrl.js'))
+            
         ; ?>
 
     </head>
