@@ -2,7 +2,7 @@ var redirect_url;
 var login_code;
 
 $(function(){
-	console.log(GetParameters);
+	//console.log(GetParameters);
 	if(typeof GetParameters["redirect_url"] !== "undefined"){
 		redirect_url = GetParameters["redirect_url"];
 	}
@@ -15,7 +15,7 @@ function loginEven(){
 		url: 'http://127.0.0.1:99/login',
 		data: parm,
 		type:"POST",
-		async: false,
+		async: true,
 		success: function(rs){			
 			//console.log(rs);
 			var result = $.parseJSON(rs);
