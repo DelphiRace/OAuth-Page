@@ -24,7 +24,6 @@ function loginEven(){
 				if(redirect_url.length > 0){
 					location.href = redirect_url+'?login_code='+result.LoginCode;
 				}
-				
 				//$("#loginMsg").html('');
 			}else{
 				$("#loginMsg").html(result.error);

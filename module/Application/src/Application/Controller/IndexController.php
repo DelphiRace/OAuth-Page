@@ -21,18 +21,17 @@ class IndexController extends AbstractActionController
 		if(empty($_SESSION)){
 			$HeadTitle->set('Login Page');
 			$this->viewContnet['pageContent'] = $this->getPageContent('index','login_page');
-		}else{
+		}
+		/*else{
 			$isLoginContent = $this->getPageContent('index','after_login');
 			$isLoginContent = str_replace("@@requestTokenCode@@",$_SESSION["requestTokenCode"],$isLoginContent);
 			$this->viewContnet['pageContent']= $isLoginContent;
-			//header("location: http://127.0.0.1:120/auth_back.php?login_code=".$_GET["login_code"]);
-			//exit();
-		}
+		}*/
         return new ViewModel($this->viewContnet);
     }
 	
 	private function getPageContent($pageType,$pageName){
-		$pagePath = dirname(__DIR__) . "\\..\\..\\..\\..\\public\\include\\pageContent\\".$pageType."\\".$pageName.".html";
+		$pagePath = dirname(__DIR__) . "\\..\\..\\..\\..\\public\\include\\pageSetting\\".$pageType."\\".$pageName.".html";
 		$pageContent = '';
 		if(file_exists($pagePath)){
 			$pageContent = file_get_contents($pagePath);
