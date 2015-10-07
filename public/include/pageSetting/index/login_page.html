@@ -13,6 +13,8 @@
 		<script src="include/js/jquery/jquery-1.11.3.min.js"></script>
 		<script src="include/js/bootstrap/bootstrap.min.js"></script>
 		<script src="include/js/page/ctrl.js"></script>
+		<script src="https://apis.google.com/js/client.js"></script>
+		<script src="include/js/google_oauth/google_oauth.js"></script>
 		<script>
 			$(function(){
 				if ('addEventListener' in window) {
@@ -47,13 +49,12 @@
 							</form>
 							<h2 id="loginMsg"></h2>
 						</header>						
-						<!--<footer>
+						<footer>
 							<ul class="icons">
-								<li><a href="#" class="fa-twitter">Twitter</a></li>
-								<li><a href="#" class="fa-instagram">Instagram</a></li>
 								<li><a href="#" class="fa-facebook">Facebook</a></li>
+								<li><a href="#" class="fa-google" onclick="handleClientLoad(); return false;">Google</a></li>
 							</ul>
-						</footer>-->
+						</footer>
 					</section>
 
 				<!-- Footer -->
