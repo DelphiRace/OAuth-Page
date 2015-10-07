@@ -30,12 +30,17 @@ class IndexController extends AbstractActionController
         return new ViewModel($this->viewContnet);
     }
 	
-	private function getPageContent($pageType,$pageName){
-		$pagePath = dirname(__DIR__) . "\\..\\..\\..\\..\\public\\include\\pageSetting\\".$pageType."\\".$pageName.".html";
-		$pageContent = '';
-		if(file_exists($pagePath)){
-			$pageContent = file_get_contents($pagePath);
-		}
-		return $pageContent;
-	}
+    private function getPageContent($pageType,$pageName){
+        $pagePath = dirname(__DIR__) . "\\..\\..\\..\\..\\public\\include\\pageSetting\\".$pageType."\\".$pageName.".html";
+        $pageContent = '';
+        if(file_exists($pagePath)){
+            $pageContent = file_get_contents($pagePath);
+        }else{
+            $pagePath = dirname(__DIR__) . "/../../../../public/include/pageSetting/".$pageType."/".$pageName.".html";
+            if(file_exists($pagePath)){
+                $pageContent = file_get_contents($pagePath);
+            }
+        }
+        return $pageContent;
+    }
 }
