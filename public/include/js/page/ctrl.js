@@ -17,7 +17,7 @@ function loginEven(){
 		type:"POST",
 		async: true,
 		success: function(rs){			
-			//console.log(rs);
+			console.log(rs);
 			var result = $.parseJSON(rs);
 			//console.log(result);
 			if(result.status){

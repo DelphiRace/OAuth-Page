@@ -45,7 +45,7 @@ function sendGoogleAccoundInfo(results){
            url: configObject.GoogleSignInBack,
            type: "POST",
            data: results,
-           dataType: 'JSON',
+           //dataType: 'JSON',
            async: false,
            success: function(rs){
                console.log(rs);
