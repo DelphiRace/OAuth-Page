@@ -10,10 +10,11 @@ function checkAuth() {
 	gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: true}, handleAuthResult);
 }
 function handleAuthResult(authResult) {
-	console.log(authResult);
 	if (authResult && !authResult.error) {
 		makeApiCall();
-	}
+    }else{
+        alert('Can not Sign In Google, Please try again!');
+    }
 }
 function handleAuthClick(event) {
 	gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: false}, handleAuthResult);
@@ -26,7 +27,9 @@ function makeApiCall() {
 			'userId': 'me'
 		});
 		request.execute(function(resp) {
-			console.log(resp);
+			//var resultJson = JSON.stringify(resp.result);
+            //console.log(resultJson);
+            sendGoogleAccoundInfo(resp.result);
 			/*var heading = document.createElement('h4');
 			var image = document.createElement('img');
 			image.src = resp.image.url;
@@ -35,4 +38,20 @@ function makeApiCall() {
 			document.getElementById('content').appendChild(heading);*/
 		});
 	});
+}
+
+function sendGoogleAccoundInfo(results){
+    $.ajax({
+           url: configObject.GoogleSignInBack,
+           type: "POST",
+           data: results,
+           dataType: 'JSON',
+           async: false,
+           success: function(rs){
+               console.log(rs);
+           },
+           error: function(rs){
+               console.log(rs);
+           }
+    });
 }

@@ -12,7 +12,7 @@ function loginEven(){
 	var parm = $("#loginInfo").serialize();
 	//console.log(parm);
 	$.ajax({
-		url: 'http://127.0.0.1:99/login',
+		url: configObject.OAuthUrl,
 		data: parm,
 		type:"POST",
 		async: true,
