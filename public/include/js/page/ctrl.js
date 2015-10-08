@@ -20,17 +20,22 @@ function loginEven(){
 			console.log(rs);
 			var result = $.parseJSON(rs);
 			//console.log(result);
-			if(result.status){
-				if(redirect_url.length > 0){
-					location.href = redirect_url+'?login_code='+result.LoginCode;
-				}
-				//$("#loginMsg").html('');
-			}else{
-				$("#loginMsg").html(result.error);
-			}
+			redirectPage(result);
 		}
 	});
 }
+
+function redirectPage(result){
+	if(result.status){
+		if(redirect_url.length > 0){
+			location.href = redirect_url+'?login_code='+result.LoginCode;
+		}
+		//$("#loginMsg").html('');
+	}else{
+		$("#loginMsg").html(result.error);
+	}
+}
+
 function logoutEven(){
 	$.ajax({
 		url: 'menter/logout',
