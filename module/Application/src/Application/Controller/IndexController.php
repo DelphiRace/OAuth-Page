@@ -11,36 +11,27 @@ namespace Application\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
+use System_APService\clsSystem;
 
 class IndexController extends AbstractActionController
 {
     public function indexAction()
     {
-		$HeadTitle = $this->getServiceLocator()->get('ViewHelperManager')->get('HeadTitle');
-		
+		$VTs = new clsSystem;
+		$VTs->initialization();
+		//----BI-----
 		if(empty($_SESSION)){
-			$HeadTitle->set('Login Page');
-			$this->viewContnet['pageContent'] = $this->getPageContent('index','login_page');
+			$pagePath = dirname(__DIR__) . "\\..\\..\\..\\..\\public\\include\\pageSetting\\index\\login_page.html";
+			$pageContent = $VTs->GetHtmlContent($pagePath);
 		}
 		/*else{
 			$isLoginContent = $this->getPageContent('index','after_login');
 			$isLoginContent = str_replace("@@requestTokenCode@@",$_SESSION["requestTokenCode"],$isLoginContent);
 			$this->viewContnet['pageContent']= $isLoginContent;
 		}*/
+		//----BI結束----
+		$VTs = null;
+		$this->viewContnet['pageContent'] = $pageContent;
         return new ViewModel($this->viewContnet);
-    }
-	
-    private function getPageContent($pageType,$pageName){
-        $pagePath = dirname(__DIR__) . "\\..\\..\\..\\..\\public\\include\\pageSetting\\".$pageType."\\".$pageName.".html";
-        $pageContent = '';
-        if(file_exists($pagePath)){
-            $pageContent = file_get_contents($pagePath);
-        }else{
-            $pagePath = dirname(__DIR__) . "/../../../../public/include/pageSetting/".$pageType."/".$pageName.".html";
-            if(file_exists($pagePath)){
-                $pageContent = file_get_contents($pagePath);
-            }
-        }
-        return $pageContent;
     }
 }
