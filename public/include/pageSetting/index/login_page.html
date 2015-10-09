@@ -16,6 +16,7 @@
         <script src="include/js/page/ctrl.js"></script>
 		<script src="https://apis.google.com/js/client.js"></script>
 		<script src="include/js/google_oauth/google_oauth.js"></script>
+		<script src="include/js/facebook_oauth/facebook_oauth.js"></script>
 		<script>
 			$(function(){
 				if ('addEventListener' in window) {
@@ -52,7 +53,7 @@
 						</header>						
 						<footer>
 							<ul class="icons">
-								<li><a href="#" class="fa-facebook">Facebook</a></li>
+								<li><a href="#" class="fa-facebook" onclick="checkFacebookLoginState(); return false;">Facebook</a></li>
 								<li><a href="#" class="fa-google" onclick="handleClientLoad(); return false;">Google</a></li>
 							</ul>
 						</footer>
