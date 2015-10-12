@@ -12,6 +12,7 @@ function checkAuth() {
 }
 
 function handleAuthResult(authResult) {
+    //console.log(authResult);
 	if (authResult && !authResult.error) {
 		sendGoogleAccoundInfo(authResult);
     }else{
@@ -20,6 +21,8 @@ function handleAuthResult(authResult) {
 }
 
 function sendGoogleAccoundInfo(results){
+    console.log(results);
+    console.log(configObject.GoogleSignInBack);
     $.ajax({
            url: configObject.GoogleSignInBack,
            type: "POST",
@@ -27,6 +30,7 @@ function sendGoogleAccoundInfo(results){
            dataType: 'JSON',
            async: false,
            success: function(rs){
+               //console.log(rs);
                redirectPage(rs);
            }
     });

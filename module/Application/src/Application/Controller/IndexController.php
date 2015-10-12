@@ -19,8 +19,12 @@ class IndexController extends AbstractActionController
     {
 		$VTs = new clsSystem;
 		$VTs->initialization();
+        @session_start();
+        //$VTs->debug($_SESSION);
+        //echo 'T';
 		//----BI-----
 		if(empty($_SESSION)){
+            
 			$pagePath = dirname(__DIR__) . "\\..\\..\\..\\..\\public\\include\\pageSetting\\index\\login_page.html";
 			$pageContent = $VTs->GetHtmlContent($pagePath);
 		}
