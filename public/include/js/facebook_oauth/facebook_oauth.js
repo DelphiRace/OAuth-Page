@@ -18,8 +18,14 @@ window.fbAsyncInit = function() {
 }(document, 'script', 'facebook-jssdk'));
 
 function checkFacebookLoginState() {
-    FB.login(function (response) {
-        checkFBStatus()
+    FB.getLoginStatus(function(response) {
+        if (response.status !== 'connected') {
+            FB.login(function () {
+                checkFBStatus();
+            });
+        }else{
+            sendFacebookAccoundInfo(response);
+        }
     });
 }
 
