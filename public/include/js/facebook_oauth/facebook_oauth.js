@@ -1,7 +1,9 @@
 window.fbAsyncInit = function() {
 	FB.init({
 		appId      : '1249539155071484',
+        status     : true,
 		xfbml      : true,
+        oauth: true,
 		version    : 'v2.5'
 	});  
 };
@@ -16,16 +18,23 @@ window.fbAsyncInit = function() {
 }(document, 'script', 'facebook-jssdk'));
 
 function checkFacebookLoginState() {
-	FB.getLoginStatus(function(response) {
-		if (response.status === 'connected') {
-			// Logged into your app and Facebook.
-			//console.log(response);
-			sendFacebookAccoundInfo(response);
-		}else{
-			alert('Can Not Login Your Facebook, Please Try Again!');
-		}
-	  //testAPI();
-	});
+    FB.login(function (response) {
+        checkFBStatus()
+    });
+}
+
+function checkFBStatus(){
+    FB.getLoginStatus(function(response) {
+        if (response.status === 'connected') {
+            // Logged into your app and Facebook.
+            //console.log(response);
+            sendFacebookAccoundInfo(response);
+        }else{
+            alert('Can Not Login Your Facebook, Please Try Again!');
+        }
+    //testAPI();
+    });
+
 }
 
 function sendFacebookAccoundInfo(response){
